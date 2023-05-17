@@ -1,0 +1,33 @@
+.todo-task {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 0 2.5%;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  /* border: 1px solid grey; */
+  border-radius: 16px;
+
+  box-shadow:  0 0 15px gray;
+}
+
+.todo-task p {
+  flex-basis: 80%;
+}
+
+.delete-icon {
+  color: #8B0000;
+}
+
+.done-task {
+  text-decoration: line-through;
+}
+
+.done-icon {
+  color:green
+}
