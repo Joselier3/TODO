@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function TodoItem(props) {
-  let check_style = props.completed ? 'solid' : 'regular'
-  console.log(check_style)
+  const doneIcon = props.completed ?
+    icon({name:'circle-check', style:'solid'})
+    : icon({name:'circle-check', style:'regular'})
   return (
     <li className='todo-task'>
       <FontAwesomeIcon 
-        icon={icon({name:'circle-check', style:'regular'})} 
-        className='app-icon done-icon'/>
+        icon={doneIcon} 
+        className={`app-icon done-icon ${props.completed ? 'done-icon--active' : ''}`}/>
       <p className={props.completed ? 'done-task' : ''}>{props.text}</p>
       <FontAwesomeIcon icon={icon({name:'x', style:'solid'})} className='app-icon delete-icon'/>
     </li>
