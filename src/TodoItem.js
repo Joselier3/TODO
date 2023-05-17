@@ -10,9 +10,13 @@ function TodoItem(props) {
     <li className='todo-task'>
       <FontAwesomeIcon 
         icon={doneIcon} 
-        className={`app-icon done-icon ${props.completed ? 'done-icon--active' : ''}`}/>
+        className={`app-icon done-icon ${props.completed ? 'done-icon--active' : ''}`}
+        onClick={props.onComplete}/>
       <p className={props.completed ? 'done-task' : ''}>{props.text}</p>
-      <FontAwesomeIcon icon={icon({name:'x', style:'solid'})} className='app-icon delete-icon'/>
+      <FontAwesomeIcon 
+        icon={icon({name:'x', style:'solid'})} 
+        className='app-icon delete-icon'
+        onClick={props.onDelete}/>
     </li>
   )
 }

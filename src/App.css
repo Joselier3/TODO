@@ -10,6 +10,7 @@
 
 .app-icon {
   height: 24px;
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {
