@@ -7,3 +7,12 @@
   margin: 40px;
   padding: 0 15%;
 }
+
+.task-list .no-task-left{
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  color: grey;
+  align-self: center;
+  margin: 0;
+}
