@@ -1,7 +1,7 @@
 import './TodoCounter.css'
 
 function TodoCounter(props) {
-  return props.completed != props.total 
+  return props.completed !== props.total 
     ? (<h1>
         You have completed {props.completed} out of {props.total} tasks
       </h1>)
