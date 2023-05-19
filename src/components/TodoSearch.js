@@ -1,4 +1,4 @@
-import './TodoSearch.css'
+import '../assets/TodoSearch.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import React from 'react'

@@ -4,8 +4,8 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import React, { useState } from 'react';
-import { useVar } from './useVar';
-import './App.css'; 
+import { useVar } from '../utils/useVar';
+import '../assets/App.css'; 
 
 // DEFAULT TASKS FOR TESTING
 

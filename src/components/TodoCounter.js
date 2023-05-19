@@ -1,4 +1,4 @@
-import './TodoCounter.css'
+import '../assets/TodoCounter.css'
 
 function TodoCounter(props) {
   return props.completed !== props.total 
