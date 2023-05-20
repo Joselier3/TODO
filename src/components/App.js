@@ -3,8 +3,9 @@ import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
+import { LoadingItem } from './LoadingItem';
 import React, { useState } from 'react';
-import { useLocalStorage } from '../utils/useVar';
+import { useLocalStorage } from '../utils/useLoadingState';
 import '../assets/App.css'; 
 
 // DEFAULT TASKS FOR TESTING
@@ -69,7 +70,13 @@ function App() {
 
       <TodoList>
 
-        {taskLoadingState && (<p className='no-task-left'>Loading Tasks...</p>)}
+        {taskLoadingState && (
+          <>
+            <LoadingItem />
+            <LoadingItem />
+            <LoadingItem />
+          </>
+        )}
         {taskError && (<p className='no-task-left'>There has been an error</p>)}
         {notFound && (<p className='no-task-left'>No tasks found</p>)}
         {noTasks && (<p className='no-task-left'>There are no tasks</p>)}

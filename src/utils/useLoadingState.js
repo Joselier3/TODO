@@ -7,6 +7,7 @@ function useLocalStorage(varKey, defaultVar) {
   let [stateVar, setStateVar] = useState(defaultVar)
 
   useEffect(() => {
+    setTimeout(() => {
     try {
       let storageVar = localStorage.getItem(varKey)
       let parsedVar
@@ -23,7 +24,7 @@ function useLocalStorage(varKey, defaultVar) {
       setLoadingState(false)
       setError(true)
     }
-  }, [])
+  }, 2000)}, [])
 
   const setVar = (newValue) => { 
     localStorage.setItem(varKey, JSON.stringify(newValue))
