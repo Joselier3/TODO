@@ -4,7 +4,7 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import React, { useState } from 'react';
-import { useVar } from '../utils/useVar';
+import { useLocalStorage } from '../utils/useVar';
 import '../assets/App.css'; 
 
 // DEFAULT TASKS FOR TESTING
@@ -24,7 +24,12 @@ function App() {
   const DEFAULT_TASKS = []
   const DEFAULT_SEARCH = ''
 
-  const [tasks, setTasks] = useVar(TASKS_KEY, DEFAULT_TASKS)
+  const {
+    stateVar: tasks, 
+    setVar: setTasks, 
+    loadingState: taskLoadingState, 
+    error: taskError
+  } = useLocalStorage(TASKS_KEY, DEFAULT_TASKS)
   const [searchValue, setSearchValue] = useState(DEFAULT_SEARCH)
 
   let completedTasks = tasks.filter((task) => task.completed).length
@@ -34,7 +39,7 @@ function App() {
 
   const onComplete = (taskId) => {
     let newTasks = [...tasks]
-    let objIndex = newTasks.findIndex((task) => task.id == taskId)
+    let objIndex = newTasks.findIndex((task) => task.id === taskId)
     newTasks[objIndex].completed = !newTasks[objIndex].completed
 
     setTasks(newTasks)
@@ -42,10 +47,13 @@ function App() {
 
   const onDelete = (taskId) => {
     let newTasks = [...tasks]
-    let objIndex = newTasks.findIndex((task) => task.id == taskId)
+    let objIndex = newTasks.findIndex((task) => task.id === taskId)
     newTasks.splice(objIndex, 1)
     setTasks(newTasks)
   }
+  
+  let notFound = !taskLoadingState && !taskError && searchValue && searchedTasks.length===0
+  let noTasks = !taskLoadingState && !taskError && !searchValue && searchedTasks.length===0
 
   return (
     <>
@@ -60,6 +68,12 @@ function App() {
       />
 
       <TodoList>
+
+        {taskLoadingState && (<p className='no-task-left'>Loading Tasks...</p>)}
+        {taskError && (<p className='no-task-left'>There has been an error</p>)}
+        {notFound && (<p className='no-task-left'>No tasks found</p>)}
+        {noTasks && (<p className='no-task-left'>There are no tasks</p>)}
+
         {searchedTasks.map(task => (<TodoItem 
           key={task.id}
           text={task.text} 
