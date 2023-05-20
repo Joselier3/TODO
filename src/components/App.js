@@ -5,7 +5,7 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import { LoadingItem } from './LoadingItem';
 import React, { useState } from 'react';
-import { useLocalStorage } from '../utils/useLoadingState';
+import { TodoContext, TodoProvider } from '../TodoContext';
 import '../assets/App.css'; 
 
 // DEFAULT TASKS FOR TESTING
@@ -19,55 +19,21 @@ import '../assets/App.css';
 // ]))
 
 function App() {
-  const TASKS_KEY = 'TASKS'
-  const SEARCH_VALUE_KEY = 'SEARCH_VALUE'
-
-  const DEFAULT_TASKS = []
-  const DEFAULT_SEARCH = ''
-
   const {
-    stateVar: tasks, 
-    setVar: setTasks, 
-    loadingState: taskLoadingState, 
-    error: taskError
-  } = useLocalStorage(TASKS_KEY, DEFAULT_TASKS)
-  const [searchValue, setSearchValue] = useState(DEFAULT_SEARCH)
-
-  let completedTasks = tasks.filter((task) => task.completed).length
-  let totalTasks = tasks.length
-
-  let searchedTasks = tasks.filter(task => task.text.toLowerCase().includes(searchValue.toLowerCase()))
-
-  const onComplete = (taskId) => {
-    let newTasks = [...tasks]
-    let objIndex = newTasks.findIndex((task) => task.id === taskId)
-    newTasks[objIndex].completed = !newTasks[objIndex].completed
-
-    setTasks(newTasks)
-  }
-
-  const onDelete = (taskId) => {
-    let newTasks = [...tasks]
-    let objIndex = newTasks.findIndex((task) => task.id === taskId)
-    newTasks.splice(objIndex, 1)
-    setTasks(newTasks)
-  }
-  
-  let notFound = !taskLoadingState && !taskError && searchValue && searchedTasks.length===0
-  let noTasks = !taskLoadingState && !taskError && !searchValue && searchedTasks.length===0
+    taskLoadingState,
+    taskError,
+    notFound,
+    noTasks,
+    searchedTasks,
+    onComplete,
+    onDelete
+  } = React.useContext(TodoContext)
 
   return (
-    <>
+    <TodoProvider>
 
-      <TodoCounter 
-        completed={completedTasks}
-        total={totalTasks}
-      />
-      <TodoSearch 
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
+      <TodoCounter />
+      <TodoSearch />
       <TodoList>
 
         {taskLoadingState && (
@@ -87,11 +53,12 @@ function App() {
           completed={task.completed}
           onComplete={() => onComplete(task.id)}
           onDelete={() => onDelete(task.id)} />))}
+          
       </TodoList>
 
       <CreateTodoButton />
 
-    </>
+    </TodoProvider>
   );
 }
 

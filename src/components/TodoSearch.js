@@ -2,11 +2,11 @@ import '../assets/TodoSearch.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import React from 'react'
+import { TodoContext } from '../TodoContext'
 
-function TodoSearch({
-  searchValue,
-  setSearchValue
-}) {
+function TodoSearch() {
+  const {searchValue, setSearchValue} = React.useContext(TodoContext)
+
   return (
     <div className={'search-todo'}>
       <FontAwesomeIcon icon={icon({name:'magnifying-glass', style:'solid'})} className='app-icon'/>

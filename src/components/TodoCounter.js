@@ -1,9 +1,13 @@
+import React from 'react'
 import '../assets/TodoCounter.css'
+import { TodoContext } from '../TodoContext'
 
-function TodoCounter(props) {
-  return props.completed !== props.total 
+function TodoCounter() {
+  const {completedTasks: completed, totalTasks:total} = React.useContext(TodoContext)
+
+  return completed !== total 
     ? (<h1>
-        You have completed {props.completed} out of {props.total} tasks
+        You have completed {completed} out of {total} tasks
       </h1>)
     : (<h1>
         You have completed all tasks
