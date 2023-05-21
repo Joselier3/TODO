@@ -41,6 +41,12 @@ function TodoProvider({ children }) {
   let notFound = !taskLoadingState && !taskError && searchValue && searchedTasks.length===0
   let noTasks = !taskLoadingState && !taskError && !searchValue && searchedTasks.length===0
 
+  const [openTaskForm, setOpenTask] = useState(false)
+
+  const onAddTask = () => {
+    setOpenTask(!openTaskForm)
+  }
+
   return (
     <TodoContext.Provider value={{
       completedTasks,
@@ -54,6 +60,8 @@ function TodoProvider({ children }) {
       searchedTasks,
       onComplete,
       onDelete,
+      openTaskForm,
+      onAddTask,
     }}>
       {children}
     </TodoContext.Provider>
@@ -61,3 +69,13 @@ function TodoProvider({ children }) {
 }
 
 export {TodoContext, TodoProvider}
+
+// DEFAULT TASKS FOR TESTING
+
+// localStorage.setItem('TASKS', JSON.stringify([
+//   {id: 0, text: "Task 1 - Cook chicken for your family", completed: true},
+//   {id: 1, text: "Task 2 - Finish react project", completed: false},
+//   {id: 2, text: "Task 3 - Continue studying for the finals", completed: false},
+//   {id: 3, text: "Task 4 - Hang out with dog", completed: true},
+//   {id: 4, text: "Task 5 - Prepare for the seminar on quantum computing", completed: true}
+// ]))
