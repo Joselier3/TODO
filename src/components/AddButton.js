@@ -4,8 +4,8 @@ import { useContext } from 'react'
 import { TodoContext } from '../TodoContext'
 import { TodoButton } from './TodoButton'
 
-function CreateTodoButton() {
-  const { onAddTask } = useContext(TodoContext)
+function AddButton() {
+  const { openAddTask: onClickAddTaskButton } = useContext(TodoContext)
   const addButtonStyle = {
     position: 'fixed',
     bottom: "2em"
@@ -13,7 +13,7 @@ function CreateTodoButton() {
 
   return (
     <TodoButton
-      onClick={onAddTask}
+      onClick={onClickAddTaskButton}
       buttonText={"Add Task"}
       buttonClass={'add-button'}
       style={addButtonStyle}>
@@ -22,4 +22,4 @@ function CreateTodoButton() {
   )    
 }
 
-export { CreateTodoButton }
+export { AddButton }

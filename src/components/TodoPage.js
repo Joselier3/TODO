@@ -2,7 +2,7 @@ import { TodoCounter } from './TodoCounter';
 import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './AddButton';
+import { AddButton } from './AddButton';
 import { LoadingItem } from './LoadingItem';
 import React from 'react';
 import { TodoContext } from '../TodoContext';
@@ -48,7 +48,7 @@ function TodoPage() {
           
       </TodoList>
 
-      <CreateTodoButton />
+      <AddButton />
 
       {openTaskForm && (
         <Modal>

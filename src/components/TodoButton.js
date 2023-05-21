@@ -6,7 +6,8 @@ function TodoButton(props) {
     <button 
     className="todo-button"
     onClick={props.onClick}
-    style={props.style}>
+    style={props.style}
+    type={props.type}>
       {props.children}
       <p>{props.buttonText}</p>
     </button>

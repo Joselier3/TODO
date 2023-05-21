@@ -43,8 +43,28 @@ function TodoProvider({ children }) {
 
   const [openTaskForm, setOpenTask] = useState(false)
 
-  const onAddTask = () => {
+  const openAddTask = () => {
     setOpenTask(!openTaskForm)
+  }
+
+  const closeAddTask = () => {
+    setOpenTask(false)
+  }
+
+  const [ newTask, setNewTask ] = useState('')
+
+  const onAddTask = () => {
+    let newTasks = [...tasks]
+    const maxId = Math.max(...newTasks.map(task => Number(task.id)))
+
+    const newTaskObj = {
+      id: maxId+1,
+      text: newTask,
+      completed: false,
+    }
+    newTasks.push(newTaskObj)
+    setTasks(newTasks)
+    closeAddTask()
   }
 
   return (
@@ -61,7 +81,10 @@ function TodoProvider({ children }) {
       onComplete,
       onDelete,
       openTaskForm,
+      openAddTask,
+      closeAddTask,
       onAddTask,
+      setNewTask
     }}>
       {children}
     </TodoContext.Provider>
