@@ -3,7 +3,7 @@ import { AddTaskButton } from './AddTaskButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useContext } from 'react'
-import { TodoContext } from '../TodoContext'
+import { TodoContext } from '../contexts/TodoContext'
 
 function AddTaskForm() {
   const { setNewTask, closeAddTask: onCancelTask } = useContext(TodoContext)

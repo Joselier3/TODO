@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/TodoCounter.css'
-import { TodoContext } from '../TodoContext'
+import { TodoContext } from '../contexts/TodoContext'
 
 function TodoCounter() {
   const {completedTasks: completed, totalTasks:total} = React.useContext(TodoContext)
