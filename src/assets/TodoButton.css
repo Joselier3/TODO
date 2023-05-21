@@ -1,4 +1,4 @@
-.create-button {
+.todo-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,17 +20,14 @@
   font-family: 'Montserrat';
   text-shadow: 0px 0px 5px rgb(0 0 0 / 0.4);
 
-  position: fixed;
-  bottom: 2em;
-
   cursor: pointer;
   user-select: none;
 }
 
-.create-button p {
+.todo-button > p {
   margin: 12px 0;
 }
 
-.create-button .add-icon {
+.todo-button > svg {
   filter: drop-shadow(0px 0px 5px rgb(0 0 0 / 0.4));
 }
