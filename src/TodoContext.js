@@ -1,9 +1,9 @@
 import { useState, createContext } from "react";
-import { useLocalStorage } from "./utils/useLoadingState";
+import { useLocalStorage } from "./utils/useLocalStorage";
 
-const TodoContext = createContext()
+const TodoContext = createContext(null)
 
-const TodoProvider = ({children}) => {
+function TodoProvider({ children }) {
   const TASKS_KEY = 'TASKS'
   const SEARCH_VALUE_KEY = 'SEARCH_VALUE'
 
@@ -53,7 +53,7 @@ const TodoProvider = ({children}) => {
       noTasks,
       searchedTasks,
       onComplete,
-      onDelete
+      onDelete,
     }}>
       {children}
     </TodoContext.Provider>
