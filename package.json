@@ -15,7 +15,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "predeply": "npm run build",
+    "deploy": "gh-pages -d build -r https://github.com/Joselier3/TODO",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
