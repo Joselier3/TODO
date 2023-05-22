@@ -3,7 +3,6 @@ import { TodoContext } from '../contexts/TodoContext'
 import { TodoButton } from './TodoButton'
 
 function AddTaskButton() {
-  const { onAddTask } = useContext(TodoContext)
   const addButtonStyle = {
     boxShadow: 'none',
     alignSelf: 'flex-start' 
@@ -11,7 +10,6 @@ function AddTaskButton() {
 
   return (
     <TodoButton
-      onClick={() => onAddTask()}
       buttonText={"Add Task"}
       buttonClass={'add-button'}
       style={addButtonStyle}

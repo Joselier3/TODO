@@ -6,10 +6,15 @@ import { useContext } from 'react'
 import { TodoContext } from '../contexts/TodoContext'
 
 function AddTaskForm() {
-  const { setNewTask, closeAddTask: onCancelTask } = useContext(TodoContext)
+  const { setNewTask, closeAddTask: onCancelTask, onAddTask } = useContext(TodoContext)
 
   return (
-    <form className='add-task-form'>
+    <form 
+      className='add-task-form'
+      onSubmit={(e) => {
+        e.preventDefault()
+        onAddTask()
+      }}>
 
       <div className='form-title'>
         <h1>Create New Task</h1>
@@ -24,7 +29,6 @@ function AddTaskForm() {
         <input className='task-input' 
         placeholder='Write a new task...'
         onChange={(event) => {
-          event.preventDefault()
           setNewTask(event.target.value)
         }} autoFocus/>
       </div>
